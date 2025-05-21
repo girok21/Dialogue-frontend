@@ -14,13 +14,13 @@
 
 ## 📁 Folder Structure
 
-/src
-├── components # Reusable UI components (cards, buttons, inputs, etc.)
-├── features # Feature-specific components (channels, chat, user panels)
-├── hooks # Custom React hooks
-├── lib # Supabase client, helpers, and utility functions
-├── store # Zustand state management logic
-├── pages or App.jsx # Route-based views or root component
-└── routes # Global types and interfaces
+/src\n
+├── components # Reusable UI components (cards, buttons, inputs, etc.)\n
+├── features # Feature-specific components (channels, chat, user panels)\n
+├── hooks # Custom React hooks\n
+├── lib # Supabase client, helpers, and utility functions\n
+├── store # Zustand state management logic\n
+├── pages or App.jsx # Route-based views or root component\n
+└── routes # Global types and interfaces\n
 
 ---
