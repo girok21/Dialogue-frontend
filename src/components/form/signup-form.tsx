@@ -9,11 +9,31 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { handleSignup } from "@/handlers/auth/handleSignup"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner"
 
 export function SignupForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const onSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const result = await handleSignup(email, password);
+
+    if (result.success) {
+      toast.success("🎉 Signup successful! Welcome aboard.");
+      navigate("/");
+    } else {
+      toast.error("❌ Signup failed. " + (result.error || "Please try again."));
+      console.error("❌ Signup failed:", result.error);
+    }
+  };
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -26,7 +46,7 @@ export function SignupForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={onSignup}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-3">
                 <Label htmlFor="email">Email</Label>
@@ -34,6 +54,7 @@ export function SignupForm({
                   id="email"
                   type="email"
                   placeholder="m@example.com"
+                  onChange={(e)=>{setEmail(e.target.value)}}
                   required
                 />
               </div>
@@ -41,13 +62,13 @@ export function SignupForm({
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
                 </div>
-                <Input id="password" type="password" required />
+                <Input id="password" type="password" required onChange={(e)=>{setPassword(e.target.value)}}/>
               </div>
                             <div className="grid gap-3">
                 <div className="flex items-center">
                   <Label htmlFor="password">Confirm Password</Label>
                 </div>
-                <Input id="password" type="password" required />
+                <Input id="confirm-password" type="password" required />
               </div>
               <div className="flex flex-col gap-3">
                 <Button type="submit" className="w-full">

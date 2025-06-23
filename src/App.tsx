@@ -1,5 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
+import { Toaster } from "@/components/ui/sonner"
 import LoginPage from "./pages/auth/LoginPage";
 import SignupPage from "./pages/auth/SignupPage";
 import ResetpasswordPage from "./pages/auth/ResetpasswordPage";
@@ -8,6 +9,7 @@ import SettingsPage from "./pages/settings/SettingsPage";
 
 function App() {
   return (
+    <>
     <BrowserRouter>
       <Routes>
         <Route path="/*" element={<HomePage />} />
@@ -17,6 +19,8 @@ function App() {
         <Route path="/settings" element={<SettingsPage />} />
       </Routes>
     </BrowserRouter>
+    <Toaster />
+    </>
   );
 }
 
