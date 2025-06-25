@@ -143,12 +143,12 @@ export function SignupForm({
                 </div>
               </div>
               <div className="flex flex-col gap-3">
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full cursor-pointer">
                   SignUp
                 </Button>
                 <Button
                   variant="outline"
-                  className="w-full"
+                  className="w-full cursor-pointer"
                   onClick={loginWithGoogle}
                 >
                   Login with Google
