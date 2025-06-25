@@ -15,3 +15,9 @@ export const getUserSession = async () => {
 export const signOut = async () => {
   return await supabase.auth.signOut();
 };
+
+export const isEmailExists = async (email: string) => {
+  return await supabase.rpc('is_email_exist', {
+    'email_input': email
+  });
+};

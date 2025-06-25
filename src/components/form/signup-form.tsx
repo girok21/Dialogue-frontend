@@ -16,6 +16,7 @@ import { toast } from "sonner"
 import { isValidEmail, doPasswordsMatch, isStrongPassword } from "@/utils/validation"
 import { Eye, EyeOff } from "lucide-react"
 import { loginWithGoogle } from "@/services/google/auth"
+import { isEmailExists } from "@/services/supabase/auth"
 export function SignupForm({
   className,
   ...props
@@ -37,6 +38,18 @@ export function SignupForm({
 
   const onSignup = async (e: React.FormEvent) => {
     e.preventDefault();
+    const emailExists = await isEmailExists(email);
+    if(emailExists){
+      setValidation(prev => ({
+        ...prev,
+        isEmailValid: false
+      }))
+      setErrorText(prev => ({
+          ...prev,
+          email: 'Email already exists'
+        }))
+      return;
+    }
     const result = await handleSignup(email, password);
 
     if (result.success) {
