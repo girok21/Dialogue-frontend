@@ -8,6 +8,5 @@ export const handleSignup = async (email: string, password: string) => {
     return { success: false, error: error.message };
   }
 
-  console.log("Signup successful:", data);
   return { success: true, data };
 };
