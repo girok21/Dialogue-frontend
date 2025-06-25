@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner"
 import { isValidEmail, doPasswordsMatch, isStrongPassword } from "@/utils/validation"
 import { Eye, EyeOff } from "lucide-react"
-
+import { loginWithGoogle } from "@/services/google/auth"
 export function SignupForm({
   className,
   ...props
@@ -133,7 +133,11 @@ export function SignupForm({
                 <Button type="submit" className="w-full">
                   SignUp
                 </Button>
-                <Button variant="outline" className="w-full">
+                <Button
+                  variant="outline"
+                  className="w-full"
+                  onClick={loginWithGoogle}
+                >
                   Login with Google
                 </Button>
               </div>
